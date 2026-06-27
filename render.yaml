@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: evalops-ai
+    runtime: python
+
+    buildCommand: |
+      pip install poetry
+      poetry install --without dev --without integrations --without langchain
+
+    startCommand: |
+      poetry run uvicorn app:app --host 0.0.0.0 --port $PORT
